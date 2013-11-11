@@ -2,80 +2,82 @@
 @player2_lives = 3
 @currentplayer = 1
  
-checkLives(){
-  if ((player1Lives > 0) && (player2Lives > 0)) {
-    return true;
+def checkLives() 
+  if ((@player1Lives > 0) && (@player2Lives > 0)) {
+    return true
   } else {
-    return false;
+    return false
   }
-}
+end
  
-function getAnswer(operator, x, y) {
+def getAnswer(operator, x, y) 
   if (operator == 1) {
-    operator = " + ";
-  } else if (operator == 2) {
-    operator = " - ";
+    operator = " + "
+  } elsif (operator == 2) {
+    operator = " - "
   } else {
-    operator = " x ";
+    operator = " x "
   }
+end
  
-  return prompt("Player " + currentPlayer + ": What does " + x + operator + y + " equal?") ;
+  return gets.chomp("Player " + @currentPlayer + ": What does " + x + operator + y + " equal?")
 }
  
-function switchPlayer() {
-  if (currentPlayer == 1) {
-    currentPlayer = 2;
-    alert("You have " + player1Lives + " lives remaining");
+def switchPlayer() 
+  if (@currentPlayer == 1) {
+    @currentPlayer = 2
+    puts("You have " + @player1Lives + " lives remaining")
   } else {
-    currentPlayer = 1;
-    alert("You have " + player2Lives + " lives remaining");
+    @currentPlayer = 1
+    puts("You have " + @player2Lives + " lives remaining")
   }
-}
+end
  
-function calculateAnswer(op, x, y) {
+def calculateAnswer(op, x, y) 
   if (op == 1) {
-    return x + y;
-  } else if (op == 2) {
-    return x - y;
+    return x + y
+  } elsif (op == 2) {
+    return x - y
   } else {
-    return x * y;
+    return x * y
   }
-}
+end
  
-function announceWinner() {
-  if (player1Lives == 0) {
-    alert("Player 2 wins!");
+def announceWinner() 
+  if (@player1Lives == 0) {
+    puts("Player 2 wins!")
   } else {
-    alert("Player 1 wins!");
+    puts("Player 1 wins!")
   }
-}
+end
  
-function checkAnswer(answer, rightAnswer) {
+def checkAnswer(answer, rightAnswer) 
   if (answer == rightAnswer) {
-    alert("Correct.");
+    puts("Correct.")
   } else {
-    if (currentPlayer == 1) {
-      player1Lives -= 1;
-      alert("Wrong! " + player1Lives + " lives left!");
+    if (@currentPlayer == 1) {
+      player1Lives -= 1
+      puts("Wrong! " + @player1Lives + " lives left!")
     } else {
-      player2Lives -= 1;
-      alert("Wrong! " + player2Lives + " lives left!");
+      player2Lives -= 1
+      puts("Wrong! " + @player2Lives + " lives left!")
     }
   }
-}
+end
+ 
  
 do {
  
-  var x  = Math.floor(Math.random() * 20) + 1;
-  var y  = Math.floor(Math.random() * 20) + 1;
-  var op = Math.floor(Math.random() * 3)  + 1;
+  x  = rand(20) + 1
+  y  = rand(20) + 1
+  op = rand(3) + 1
   
-  var rightAnswer = calculateAnswer(op, x, y);
-  var answer = getAnswer(op, x, y);
+  rightAnswer = calculateAnswer(op, x, y)
+  answer = getAnswer(op, x, y
  
   checkAnswer(answer, rightAnswer);
-  switchPlayer();
+  switchPlayer()
  
 } while (checkLives() == true )
  
-announceWinner();
+announceWinner()

@@ -2,7 +2,7 @@ var player1Lives = 3;
 var player2Lives = 3;
 var currentPlayer = 1;
  
-function checkLives(){
+checkLives(){
   if ((player1Lives > 0) && (player2Lives > 0)) {
     return true;
   } else {
