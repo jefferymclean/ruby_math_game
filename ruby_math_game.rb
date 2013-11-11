@@ -1,83 +1,82 @@
 @player1_lives = 3
 @player2_lives = 3
-@currentplayer = 1
+@current_player = 1
  
-def checkLives() 
-  if ((@player1Lives > 0) && (@player2Lives > 0)) {
+def check_lives() 
+  if ((@player1_lives > 0) && (@player2_lives > 0)) 
     return true
-  } else {
+   else 
     return false
-  }
+  end
 end
  
-def getAnswer(operator, x, y) 
-  if (operator == 1) {
+def get_answer(operator, x, y) 
+  if (operator == 1) 
     operator = " + "
-  } elsif (operator == 2) {
+   elsif (operator == 2) 
     operator = " - "
-  } else {
+   else 
     operator = " x "
-  }
+  end
+end
+ # part of the below line is changed into Ruby but i'm not sure of syntax.
+  return gets.chomp('Player' + @current_player.to_s + ': What does ' + x + operator + y + ' equal?')
+
+ 
+def switch_player() 
+  if (@current_player == 1) 
+    @current_player = 2
+    puts("You have " + @player1_lives + " lives remaining")
+   else 
+    @current_player = 1
+    puts("You have " + @player2_lives + " lives remaining")
+  end
 end
  
-  return gets.chomp("Player " + @currentPlayer + ": What does " + x + operator + y + " equal?")
-}
- 
-def switchPlayer() 
-  if (@currentPlayer == 1) {
-    @currentPlayer = 2
-    puts("You have " + @player1Lives + " lives remaining")
-  } else {
-    @currentPlayer = 1
-    puts("You have " + @player2Lives + " lives remaining")
-  }
-end
- 
-def calculateAnswer(op, x, y) 
-  if (op == 1) {
+def calculate_answer(op, x, y) 
+  if (op == 1) 
     return x + y
-  } elsif (op == 2) {
+   elsif (op == 2) 
     return x - y
-  } else {
+   else 
     return x * y
-  }
+  end
 end
  
-def announceWinner() 
-  if (@player1Lives == 0) {
+def announce_winner() 
+  if (@player_1Lives == 0) 
     puts("Player 2 wins!")
-  } else {
+   else 
     puts("Player 1 wins!")
-  }
+  end
 end
  
-def checkAnswer(answer, rightAnswer) 
-  if (answer == rightAnswer) {
+def check_answer(answer, right_answer) 
+  if (answer == right_answer) 
     puts("Correct.")
-  } else {
-    if (@currentPlayer == 1) {
-      player1Lives -= 1
-      puts("Wrong! " + @player1Lives + " lives left!")
-    } else {
-      player2Lives -= 1
-      puts("Wrong! " + @player2Lives + " lives left!")
-    }
-  }
+   else 
+    if (@current_player == 1) 
+      player1_lives -= 1
+      puts("Wrong! " + @player1_lives + " lives left!")
+     else 
+      player2_lives -= 1
+      puts("Wrong! " + @player2_lives + " lives left!")
+    end
+  end
 end
- 
- 
-do {
+
  
   x  = rand(20) + 1
   y  = rand(20) + 1
   op = rand(3) + 1
   
-  rightAnswer = calculateAnswer(op, x, y)
-  answer = getAnswer(op, x, y
+  right_answer = calculate_answer(op, x, y)
+  answer = get_answer(op, x, y)
  
-  checkAnswer(answer, rightAnswer);
-  switchPlayer()
+  check_answer(answer, right_answer)
+  switch_player()
  
-} while (checkLives() == true )
+ while (check_lives() == true )
  
-announceWinner()
+announce_winner()
+end
